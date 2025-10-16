@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "node src/index.js",
-    "test": "jest --forceExit --detectOpenHandles",
-    "build": "echo 'No build step required for Node.js' && exit 0"
+    "test": "npx jest --forceExit --detectOpenHandles"
   },
   "dependencies": {
     "express": "^4.18.0"
