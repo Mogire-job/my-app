@@ -27,8 +27,11 @@ jobs:
     - name: Install dependencies
       run: npm install
 
+    - name: Fix Jest permissions
+      run: npx jest --version
+
     - name: Run tests
-      run: npm test
+      run: npx jest --forceExit --detectOpenHandles
 
   build-and-push:
     needs: test
@@ -79,9 +82,11 @@ jobs:
         version: 'latest'
 
     - name: Configure Kubernetes context
+      env:
+        KUBECONFIG_DATA: ${{ secrets.KUBE_CONFIG }}
       run: |
         mkdir -p ~/.kube
-        echo "${{ secrets.KUBE_CONFIG }}" > ~/.kube/config
+        echo "$KUBECONFIG_DATA" > ~/.kube/config
         kubectl config get-contexts
         kubectl config current-context
 
