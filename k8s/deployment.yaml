@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: my-node-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: my-node-app
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: my-node-app
-        image: ghcr.io/your-username/my-node-app:latest
+        image: ghcr.io/mogire-job/my-app:latest
         ports:
         - containerPort: 3000
         env:
